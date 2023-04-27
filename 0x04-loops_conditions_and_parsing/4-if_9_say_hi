@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-#Creating a script that uses a while loop
+#Creating a script that uses a while loop to print conditionally
 x=1
 while [ $x -le 10 ]
 do
