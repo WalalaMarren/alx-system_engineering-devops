@@ -1,2 +1,4 @@
 #!/usr/bin/env bash
 # Connecting to a server through a private key
+
+ssh vagrant@ubuntu-focal@35.175.63.2 -i ~/.ssh/school
