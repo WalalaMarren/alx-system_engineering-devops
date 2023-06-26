@@ -1,2 +1,4 @@
 #!/usr/bin/env bash
 # Connecting to a server through a private key
+
+ssh-keygen -b 4096 -f school -t rsa -N betty
