@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
-# Connecting to a server through a private key
+# creates an RSA key pair
 
-ssh-keygen -b 4096 -f school -t rsa -N betty
+ssh-keygen -t rsa -N betty -f holberton -b 4096
