@@ -1,0 +1,26 @@
+defaults
+	log	global
+	mode	http
+	option	httplog
+
+frontend web-server
+	bind *:80
+	default_backend app-servers
+	
+backend app-servers
+	balance	roundrobin
+	server 57647-web-01 54.197.73.242:80 check
+	server 57647-web-02 54.208.60.185:80 check
+#--robertokoba.tech params----begining
+frontend  robertokoba.tech-https-frontend
+        bind *:80
+        bind *:443 ssl crt /etc/ssl/certs/robert.pem
+        http-request redirect scheme https code 301 unless { ssl_fc }
+        default_backend robertokoba.tech-backend
+
+
+backend robertokoba.tech-backend
+        balance roundrobin
+        server 57647-web-01 54.197.73.242:80 check
+        server 57647-web-02 54.208.60.185:80 check
+# end of parameters
