@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+#make a deamond process based on manage_my_process file
+#uses: start to create a process, stop to stop the process and restart
+#use stop to make a exit cleaner
+
+if [ ! "$1" ]
+then
+	echo "Usage: manage_my_process {start|stop|restart}"
+elif [ "$1" == "start" ]
+then
+	./manage_my_process &
+	pid=$!
+	echo "$pid" > /var/run/my_process.pid
+	echo "manage_my_process started"
+elif [ "$1" == "stop" ]
+then
+	pid=$(head -n1 /var/run/my_process.pid)
+	kill "$pid"
+	rm /var/run/my_process.pid
+	echo "manage_my_process stopped"
+elif [ "$1" == "restart" ]
+then
+	pid=$(head -n1 /var/run/my_process.pid)
+	kill "$pid"
+	rm /var/run/my_process.pid
+	./manage_my_process &
+	pid=$!
+	echo "$pid" > /var/run/my_process.pid
+	echo "manage_my_process restarted"
+fi

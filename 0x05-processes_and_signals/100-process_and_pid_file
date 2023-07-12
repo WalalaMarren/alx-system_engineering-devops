@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+#Bash script that displays messages when read some signals
+#print a file containing its PID.
+#Displays `To infinity and beyond` indefinitely
+#make a new file storing his own PID
+#use signal handler to get exit clean
+#the correct way to leave is using SIGQUIT to quit the file an delete file
+
+touch /var/run/myscript.pid
+echo $$ > /var/run/myscript.pid
+
+_term()
+{
+	rm /var/run/myscript.pid
+	echo "I hate the kill command"
+}
+trap _term SIGTERM
+
+_int()
+{
+	echo "Y U no love me?!"
+}
+trap _int SIGINT
+
+-quit()
+{
+	rm /var/run/myscript.pid
+	exit
+}
+trap _quit SIGQUIT
+
+while :
+do
+	echo "To infinity and beyond"
+	sleep 2
+
+done
