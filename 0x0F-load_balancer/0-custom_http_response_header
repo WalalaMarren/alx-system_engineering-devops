@@ -15,8 +15,9 @@ server_config=\
 	root /var/www/html;
 	index index.html index.html index.nginx-debian.html;
 	server_name _;
-	add_header X-Served-By \$Web-01;
+	#add_header X-Served-By $HOSTNAME;
 	location / {
+		add_header X-Served-By $HOSTNAME;
 		try_files \$uri \$uri/ =404;
 	}
 	
