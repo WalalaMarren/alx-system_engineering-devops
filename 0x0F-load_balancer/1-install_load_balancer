@@ -19,8 +19,8 @@ frontend web-server
 	
 backend web-servers
 	balance	roundrobin
-	server 57647-web-01 54.236.41.181:80 check
-	server 57647-web-02 100.25.170.120:80 check" >> /etc/haproxy/haproxy.cfg
+	server 20500-web-01 54.236.41.181:80 check
+	server 20500-web-02 100.25.170.120:80 check" >> /etc/haproxy/haproxy.cfg
 
 #Enable haproxy to be managed via init script
 systemctl enable haproxy
